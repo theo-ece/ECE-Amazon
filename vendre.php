@@ -12,22 +12,22 @@
 
 	if($Catégorie == $Livre)
 	{
-		header('Location: http://localhost/ECE-Amazon-master/index.html');
+		header('Location: http://localhost/ECE-Amazon-master/vendrelivre.html');
   		exit();
 	}
 	if($Catégorie == $Musique)
 	{
-		header('Location: http://localhost/ECE-Amazon-master/index.html');
+		header('Location: http://localhost/ECE-Amazon-master/vendremusique.html');
   		exit();
 	}
 	if($Catégorie == $Sport)
 	{
-		header('Location: http://localhost/ECE-Amazon-master/index.html');
+		header('Location: http://localhost/ECE-Amazon-master/vendresport.html');
   		exit();
 	}
 	if($Catégorie == $Vetement)
 	{
-		header('Location: http://localhost/ECE-Amazon-master/index.html');
+		header('Location: http://localhost/ECE-Amazon-master/vendrevetement.html');
   		exit();
 	}
 	
