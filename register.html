@@ -8,7 +8,7 @@ Licence URI: http://www.os-templates.com/template-terms
 -->
 <html lang="">
 <head>
-<title>Profil</title>
+<title>Interlingua</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -113,17 +113,22 @@ Licence URI: http://www.os-templates.com/template-terms
     <!-- main body -->
     <!-- ################################################################################################ -->
     <div class="sectiontitle">
-      <h6 class="heading">Imperdiet vivamus</h6>
-      <p>Scelerisque arcu et interdum vulputate purus nisl.</p>
+      <h6 class="heading">Création du compte</h6>
+      <p>Veuiller rentrer vos données personnelles comme indiqué dans les closes suivantes.</p>
     </div>
-    
-      <div class="one_half">
-        <img class="inspace-10 borderedbox" src="images/demo/pp.png" alt="">
-      </div>
-    </div>
-    <!-- ################################################################################################ -->
-    <!-- / main body -->
-    <div class="clear"></div>
+    <div class="group" align="center">
+          <div class="form">
+            <form method="post" class="register-form" action="traitements/register.php">
+              <input type="text" name="nom" placeholder="nom"/><p></p>
+              <input type="text" name="pseudo" placeholder="pseudo"/><p></p>
+              <input type="text" name="email" placeholder="adresse@e-mail.com"/><p></p>
+              <input type="password" name="mdp" placeholder="Mot de passe"/><p></p>
+              <button>Créer votre compte</button>
+              <p class="message">Déjà enregistré? <a href="login.html">Connectez vous <3</a></p>
+            </form>
+          </div>
+  </div>
+  <div class="clear"></div>
   </main>
 </div>
 <!-- ################################################################################################ -->
