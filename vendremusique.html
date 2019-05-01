@@ -105,28 +105,29 @@ Licence URI: http://www.os-templates.com/template-terms
     <!-- main body -->
     
     <div class="sectiontitle">
-      <h6>Quel  livre   voulez-vous   vendre?</h6>
-      <p>Rentrez les caractéristiques du livre que vous voulez vendre</p>
+      <h6>Quelle  musique  voulez-vous   vendre?</h6>
+      <p>Rentrez les caractéristiques de la musique que vous voulez vendre</p>
     </div>
     <div align="center">
       <form>
       <!-- <form action="vendrelivre.php"  method="post" > -->
         <input class="btmspace-10" type="text" name="" placeholder="Titre">
-        <input class="btmspace-10" type="text" name="" placeholder="Auteur">
+        <input class="btmspace-10" type="text" name="" placeholder="Album">
+        <input class="btmspace-10" type="text" name="" placeholder="Artiste">
         <input class="btmspace-10" type="Number" name="" placeholder="Prix">
+         <select name="dropdown" value="Catégorie">
+          <option value="Jazz">Jazz</option>
+          <option value="Classique">Classique</option>
+          <option value="Pop">Pop</option>
+          <option value="Reggae">Reggae</option>
+          <option value="Rock">Rock</option>
+        </select><br>
         <input class="btmspace-10" type="text" name="" placeholder="Editeur">
         <input class="btmspace-10" type="text" name="" placeholder="Résumé">
-        <select name="dropdown" value="Catégorie">
-          <option value="Aventure">Aventure</option>
-          <option value="Classique">Classique</option>
-          <option value="Jeunesse">Jeunesse</option>
-          <option value="Policier">Policier</option>
-          <option value="ScienceF">ScienceF</option>
-        </select><br>
         <input class="btmspace-10" type="Number" name="" placeholder="Quantité">
-        <label for="image">Choisissez l'image de votre livre</label>
+        <label for="image">Choisissez la pochette de votre musique</label>
         <input type="file" id="image" name="image"accept="image/png, image/jpeg"><br>
-        <label for="video">Choisissez la vidéo pour votre livre</label>
+        <label for="video">Choisissez le clip de votre musique</label>
         <input type="file" id="video" name="video"accept="image/png, image/jpeg">
         <br>
         <input type="submit" value="vendre">

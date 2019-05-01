@@ -99,24 +99,36 @@ Licence URI: http://www.os-templates.com/template-terms
 
 
 
+
 <div class="wrapper row3">
   <main class="hoc container clear"> 
     <!-- main body -->
     
     <div class="sectiontitle">
-      <h6>Quel  objet   voulez-vous   vendre?</h6>
-      <p>Rentrez la catégorie d'objet que vous voulez vendre</p>
+      <h6>Quel  objet  sportif  voulez-vous   vendre?</h6>
+      <p>Rentrez les caractéristiques du livre que vous voulez vendre</p>
     </div>
     <div align="center">
-      <form action="vendre.php"  method="post" >
-        <select value="Catégorie" name="Catégorie">
-          <option value="Musique">Musique</option>
-          <option value="Livre">Livre</option>
-          <option value="Vetement">Vetement</option>
+      <form>
+      <!-- <form action="vendrelivre.php"  method="post" > -->
+        <input class="btmspace-10" type="text" name="" placeholder="Nom">
+        <input class="btmspace-10" type="Number" name="" placeholder="Prix">
+        <input class="btmspace-10" type="text" name="" placeholder="Marque">
+        <select name="dropdown" value="Catégorie">
+          <option value="Ballon">Ballon</option>
+          <option value="Raquette">Raquette</option>
           <option value="Sport">Sport</option>
-        </select><br><br>
-
-        <input type="submit" name="Soumettre">
+          <option value="Velo">Vélo</option>
+        </select>
+        <label for="image">Choisissez l'image de votre objet</label>
+        <input type="file" id="image" name="image"accept="image/png, image/jpeg"><br>
+        <label for="video">Choisissez la vidéo pour votre objet</label>
+        <input type="file" id="video" name="video"accept="image/png, image/jpeg">
+        <br>
+         <input class="btmspace-10" type="Number" name="" placeholder="Quantité">
+        <input class="btmspace-10" type="text" name="" placeholder="Description">
+        <br>
+        <input type="submit" value="vendre">
        </form>
       </div>
   </main>
