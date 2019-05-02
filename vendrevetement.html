@@ -36,30 +36,33 @@ Licence URI: http://www.os-templates.com/template-terms
     <!-- main body -->
     
     <div class="sectiontitle">
-      <h6>Quelle  musique  voulez-vous   vendre?</h6>
-      <p>Rentrez les caractéristiques de la musique que vous voulez vendre</p>
+      <h6>Quel  vêtement  voulez-vous   vendre?</h6>
+      <p>Rentrez les caractéristiques du vêtement que vous voulez vendre</p>
     </div>
     <div align="center">
-      <form action="vendremusique.php"  method="post" enctype="multipart/form-data"> 
+      <form action="vendrevetement.php"  method="post" enctype="multipart/form-data">
       <!-- <form action="vendrelivre.php"  method="post" > -->
-        <input class="btmspace-10" type="text" name="Titre" placeholder="Titre">
-        <input class="btmspace-10" type="text" name="Album" placeholder="Album">
-        <input class="btmspace-10" type="text" name="Artiste" placeholder="Artiste">
+        <input class="btmspace-10" type="text" name="Nom" placeholder="Nom">
+        <input class="btmspace-10" type="text" name="Marque" placeholder="Marque">
+        <input class="btmspace-10" type="text" name="Couleur" placeholder="Couleur">
         <input class="btmspace-10" type="Number" name="Prix" placeholder="Prix">
-        <textarea class="btmspace-10"  name="Description" placeholder="Description"></textarea> 
-        <input class="btmspace-10" type="Number" name="Quantite" placeholder="Quantité"><br>
-         <select name="Categorie" value="Catégorie">
-          <option value="Jazz">Jazz</option>
-          <option value="Classique">Classique</option>
-          <option value="Pop">Pop</option>
-          <option value="Reggae">Reggae</option>
-          <option value="Rock">Rock</option>
-        </select><br>
-        
-        <label for="image">Choisissez la pochette de votre musique</label>
-        <input type="file" name="image" id="fileToUpload" ><br>
+         <input class="btmspace-10" type="Number" name="Quantite" placeholder="Quantité">
+        <input class="btmspace-10" type="text" name="Description" placeholder="Description">
+        <input class="btmspace-10" type="Number" name="Taille" placeholder="Taille">
+        <br>
+        <select name="dropdown" value="Catégorie">
+          <option value="Chaussures">Chaussures</option>
+          <option value="Haut">Haut</option>
+          <option value="Pantalon">Pantalon</option>
+        </select> <br>
+         <select name="Genre" value="Genre">
+          <option value="Feminin">Feminin</option>
+          <option value="Masculin">Masculin</option>
+        </select> <br>
+        <label for="image">Choisissez l'image de votre objet</label>
+        <input type="file" id="image" name="image"accept="image/png, image/jpeg"><br>
         <br><br><br>
-        <input type="submit" name="vendremusique" value="vendre">
+        <input type="submit" name="vendrevetement" value="vendre">
        </form>
       </div>
   </main>
