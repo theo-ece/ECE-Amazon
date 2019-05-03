@@ -1,11 +1,11 @@
 <?php
 
-$target_dir = "images/Livre/";
+$target_dir = "images/Vetement/";
 $target_file = $target_dir . basename($_FILES["image"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 // Check if image file is a actual image or fake image
-if(isset($_POST["vendrelivre"])) 
+if(isset($_POST["vendrevetement"])) 
 {
     $check = getimagesize($_FILES["image"]["tmp_name"]);
     if($check !== false) {
@@ -49,15 +49,19 @@ if ($uploadOk == 0) {
 
 //recuperer les données venant de la page HTML
 //le parametre de $_POST = "name" de <input> de votre page HTML
-$Titre = isset($_POST["Titre"])? $_POST["Titre"] : "";
-$Auteur = isset($_POST["Auteur"])? $_POST["Auteur"] : "";
+$Nom = isset($_POST["Nom"])? $_POST["Nom"] : "";
+$Marque = isset($_POST["Marque"])? $_POST["Marque"] : "";
+$Couleur = isset($_POST["Couleur"])? $_POST["Couleur"] : "";
 $Prix = isset($_POST["Prix"])? $_POST["Prix"] : "";
-$Editeur = isset($_POST["Editeur"])? $_POST["Editeur"] : "";
-$Resume = isset($_POST["Resume"])? $_POST["Resume"] : "";
 $Categorie = isset($_POST["Categorie"])? $_POST["Categorie"] : "";
+$Genre = isset($_POST["Genre"])? $_POST["Genre"] : "";
+$Image = "images/Vetement/".basename( $_FILES["image"]["name"]);
 $Quantite = isset($_POST["Quantite"])? $_POST["Quantite"] : "";
-$Image = "images/Livre/".basename( $_FILES["image"]["name"]);
+$Description = isset($_POST["Description"])? $_POST["Description"] : "";
+$Taille = isset($_POST["Taille"])? $_POST["Taille"] : "";
+
 $Video = isset($_POST["video"])? $_POST["video"] : "";
+
 
 
 //identifier votre BDD
@@ -66,16 +70,18 @@ $database = "piscine";
 //Rappel: votre serveur = localhost et votre login = root et votre password = <rien>
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
+/*$p = $_SERVER['PHP_SELF'];
+$page = basename ($p);*/
 
-if ($_POST["vendrelivre"]) {
+if ($_POST["vendrevetement"]) {
 	if ($db_found) 
 	{
-        $sql = "SELECT * FROM livre";
-        if ($Titre != "") {
+        $sql = "SELECT * FROM vetement";
+       if ($Nom != "") {
 //on cherche le livre avec les paramètres titre et auteur
-            $sql .= " WHERE Titre LIKE '%$Titre%'";
-            if ($Auteur != "") {
-                $sql .= " AND Auteur LIKE '%$Auteur%'";
+            $sql .= " WHERE Nom LIKE '%$Nom%'";
+            if ($Marque != "") {
+                $sql .= " AND Marque LIKE '%$Marque%'";
             }
         }
         $result = mysqli_query($db_handle, $sql);
@@ -83,17 +89,29 @@ if ($_POST["vendrelivre"]) {
         if (mysqli_num_rows($result) != 0) {
 //le livre est déjà dans la BDD
 //augmenter la quantité de livres
-            $sql = "UPDATE livre SET Quantite ='$Quantite'+Quantite WHERE Titre LIKE '%$Titre%' AND Auteur LIKE'%$Auteur%' ";
+            $sql = "UPDATE vetement SET Quantite ='$Quantite'+Quantite WHERE Nom LIKE '%$Nom%' AND Marque LIKE'%$Marque%' ";
             $result = mysqli_query($db_handle, $sql);
             header('Location: php/check.php');
             exit();
 
          } else {
-			$sql = "INSERT INTO livre(Titre,Auteur,Prix,Editeur,Resume,Cat,Quantite,Image) VALUES('$Titre','$Auteur', '$Prix', '$Editeur', '$Resume','$Categorie' ,'$Quantite','$Image')";
+			$sql = "INSERT INTO vetement(Nom,Marque,Couleur,Prix,Cat,Genre,Image,Quantite,Description,Taille) VALUES('$Nom','$Marque','$Couleur','$Prix','$Categorie','$Genre','$Image','$Quantite','$Description','$Taille')";
 			$result = mysqli_query($db_handle, $sql);
-			header('Location:php/check.php');
-  			exit();
+            echo "<script>alert(\"la vente s'est bien effectuée\")</script>";
+            /*echo( "?><script>alert(\"la vente s'est bie effectuée\" )</script>; <?php " ); */
+            /*if($page == "php/check.php")
+            {
+              echo "<script>alert(\"la vente s'est bien effectuée\")</script>";
+            }
+            $w1 = new EvTimer(0, 0, function ($w) {
+            echo "<script>alert(\"la vente s'est bien effectuée\")</script>";
+            Ev::iteration() == 5 and $w->stop();
+            });*/
+            header('Location: php/check.php');
+            exit();
         }
+        
+
 			
 	}else {
 echo "Database not found";

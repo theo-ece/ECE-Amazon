@@ -1,11 +1,11 @@
 <?php
 
-$target_dir = "images/Livre/";
+$target_dir = "images/Sport/";
 $target_file = $target_dir . basename($_FILES["image"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 // Check if image file is a actual image or fake image
-if(isset($_POST["vendrelivre"])) 
+if(isset($_POST["vendresport"])) 
 {
     $check = getimagesize($_FILES["image"]["tmp_name"]);
     if($check !== false) {
@@ -49,14 +49,13 @@ if ($uploadOk == 0) {
 
 //recuperer les données venant de la page HTML
 //le parametre de $_POST = "name" de <input> de votre page HTML
-$Titre = isset($_POST["Titre"])? $_POST["Titre"] : "";
-$Auteur = isset($_POST["Auteur"])? $_POST["Auteur"] : "";
+$Nom = isset($_POST["Nom"])? $_POST["Nom"] : "";
 $Prix = isset($_POST["Prix"])? $_POST["Prix"] : "";
-$Editeur = isset($_POST["Editeur"])? $_POST["Editeur"] : "";
-$Resume = isset($_POST["Resume"])? $_POST["Resume"] : "";
+$Marque = isset($_POST["Marque"])? $_POST["Marque"] : "";
+$Description = isset($_POST["Description"])? $_POST["Description"] : "";
 $Categorie = isset($_POST["Categorie"])? $_POST["Categorie"] : "";
 $Quantite = isset($_POST["Quantite"])? $_POST["Quantite"] : "";
-$Image = "images/Livre/".basename( $_FILES["image"]["name"]);
+$Image = "images/Sport/".basename( $_FILES["image"]["name"]);
 $Video = isset($_POST["video"])? $_POST["video"] : "";
 
 
@@ -67,15 +66,15 @@ $database = "piscine";
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 
-if ($_POST["vendrelivre"]) {
+if ($_POST["vendresport"]) {
 	if ($db_found) 
 	{
-        $sql = "SELECT * FROM livre";
-        if ($Titre != "") {
+        $sql = "SELECT * FROM sport";
+        if ($Nom != "") {
 //on cherche le livre avec les paramètres titre et auteur
-            $sql .= " WHERE Titre LIKE '%$Titre%'";
-            if ($Auteur != "") {
-                $sql .= " AND Auteur LIKE '%$Auteur%'";
+            $sql .= " WHERE Nom LIKE '%$Nom%'";
+            if ($Marque != "") {
+                $sql .= " AND Marque LIKE '%$Marque%'";
             }
         }
         $result = mysqli_query($db_handle, $sql);
@@ -83,15 +82,15 @@ if ($_POST["vendrelivre"]) {
         if (mysqli_num_rows($result) != 0) {
 //le livre est déjà dans la BDD
 //augmenter la quantité de livres
-            $sql = "UPDATE livre SET Quantite ='$Quantite'+Quantite WHERE Titre LIKE '%$Titre%' AND Auteur LIKE'%$Auteur%' ";
+            $sql = "UPDATE sport SET Quantite ='$Quantite'+Quantite WHERE Nom LIKE '%$Nom%' AND Marque LIKE'%$Marque%' ";
             $result = mysqli_query($db_handle, $sql);
             header('Location: php/check.php');
             exit();
 
          } else {
-			$sql = "INSERT INTO livre(Titre,Auteur,Prix,Editeur,Resume,Cat,Quantite,Image) VALUES('$Titre','$Auteur', '$Prix', '$Editeur', '$Resume','$Categorie' ,'$Quantite','$Image')";
+			$sql = "INSERT INTO sport(Nom,Prix,Marque,Cat,Image,Quantite,Description) VALUES('$Nom', '$Prix', '$Marque', '$Categorie' ,'$Image','$Quantite', '$Description')";
 			$result = mysqli_query($db_handle, $sql);
-			header('Location:php/check.php');
+			header('Location: php/check.php');
   			exit();
         }
 			
