@@ -117,7 +117,7 @@ $total=0;
           mysqli_close($db_handle);
         } // fin du if $_SESSION
         ?> 
-        <article><br><a href="payer.html">Passer la commande</a></article>
+        <article><br><a href="paiement.html">Passer la commande</a></article>
       </div>
       <div class="clear"></div>
     </main>
