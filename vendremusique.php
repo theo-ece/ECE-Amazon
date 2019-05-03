@@ -68,10 +68,32 @@ $db_found = mysqli_select_db($db_handle, $database);
 if ($_POST["vendremusique"]) {
 	if ($db_found) 
 	{
+		$sql = "SELECT * FROM musique";
+		if ($Titre != "") {
+//on cherche le livre avec les paramètres titre et auteur
+			$sql .= " WHERE Titre LIKE '%$Titre%'";
+			if ($Artiste != "") {
+				$sql .= " AND Artiste LIKE '%$Artiste%'";
+			}
+		}
+		$result = mysqli_query($db_handle, $sql);
+//regarder s'il y a de résultat
+		if (mysqli_num_rows($result) != 0) {
+//le livre est déjà dans la BDD
+//augmenter la quantité de livres
+
+			//$Quantite= $Quantite + Quantite;
+			$sql = "UPDATE musique SET Quantite ='$Quantite'+Quantite WHERE Titre LIKE '%$Titre%' AND Artiste LIKE'%$Artiste%' ";
+			$result = mysqli_query($db_handle, $sql);
+			header('Location: php/check.php');
+  			exit();
+
+		 } else {
 			$sql = "INSERT INTO musique(Titre,Album,Artiste,Prix,Cat,Image,Quantite,Description) VALUES('$Titre','$Album','$Artiste' ,'$Prix', '$Categorie', '$Image','$Quantite', '$Description' )";
 			$result = mysqli_query($db_handle, $sql);
-			header('Location: http://localhost/ECE-Amazon-master/vendre.html');
+			header('Location: php/check.php');
   			exit();
+  		}
 		
 		
 	}else {
