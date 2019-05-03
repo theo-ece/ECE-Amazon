@@ -2,6 +2,7 @@
 	// $nom= isset($_POST["nom"])  ==> si la variable nom vaut $_Post[nom]
 	// ?$_POST["nom"]		     	==> alors nom prend la valeur
 	// :""							==> sinnon prend la valeur 'vide'
+	
 
 	$Catégorie= isset($_POST["Catégorie"])? $_POST["Catégorie"] :"";
 	$Livre= isset($_POST["Livre"])? $_POST["Livre"] :"";
@@ -12,22 +13,22 @@
 
 	if($Catégorie == "Livre")
 	{
-		header('Location: http://localhost/ECE-Amazon-master/vendrelivre.html');
+		header('location: vendrelivre.html');
   		exit();
 	}
 	if($Catégorie == "Musique")
 	{
-		header('Location: http://localhost/ECE-Amazon-master/vendremusique.html');
+		header('location: vendremusique.html');
   		exit();
 	}
 	if($Catégorie == "Sport")
 	{
-		header('Location: http://localhost/ECE-Amazon-master/vendresport.html');
+		header('location: vendresport.html');
   		exit();
 	}
 	if($Catégorie == "Vetement")
 	{
-		header('Location: http://localhost/ECE-Amazon-master/vendrevetement.html');
+		header('location: vendrevetement.html');
   		exit();
 	}
 	
