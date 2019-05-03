@@ -60,13 +60,13 @@ Licence URI: http://www.os-templates.com/template-terms
       <p>- Rentrer les paramètres pour effectuer votre paiement -</p>
     </div>
     <div align="center">
-      <form action="paiment.php"  method="post" >
+      <form action="paiement.php"  method="post" >
         <div style="float: left ; margin-left: 290px;">
         <input type="text" name="Adresse" placeholder="adresse"><br>
-        <input type="name" name="Ville" placeholder="ville"><br>
-        <input type="text" name="CP" placeholder="code postal" required minlength="5" maxlength="5" size="20"><br>
+        <input type="text" name="Ville" placeholder="ville"><br>
+        <input type="number" name="CP" placeholder="code postal" required minlength="5" maxlength="5" size="5"><br>
         <input type="name" name="Pays" placeholder="pays"><br>
-        <input type="text" name="Numero" placeholder="téléphone" required minlength="10" maxlength="10" size="20"><br>
+        <input type="number" name="Numero" placeholder="téléphone" size="20"><br>
         </div>
         <div style="float: left; margin-left: 60px;">
            <select name = "Typecarte" id="type">
@@ -77,9 +77,9 @@ Licence URI: http://www.os-templates.com/template-terms
                     <option >American Express</option>
         </select><br>
         <input type="name" name="Nomcarte" placeholder="nom sur la carte"><br>
-        <input type="text" name="Numcarte" placeholder="numéro carte" required minlength="16" maxlength="16" size="20"><br>
-        <input type="text" name="Codecarte" placeholder="code sécurité" required minlength="3" maxlength="4" size="20"><br>
-        <input type="date" name="Date" placeholder="date d'expiration" id="dateExpiration"><br>
+        <input type="Number" name="Numcarte" placeholder="numéro carte" required minlength="16" maxlength="16" size="20"><br>
+        <input type="Number" name="Codecarte" placeholder="code sécurité" required minlength="3" maxlength="4" size="20"><br>
+        <input type="date" name="Datecarte" placeholder="date d'expiration" id="dateExpiration"><br>
         <input type="submit" name="vendre" value="valider">
         </div>
       

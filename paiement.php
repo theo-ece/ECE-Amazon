@@ -11,7 +11,8 @@ $Typecarte = isset($_POST["Typecarte"])? $_POST["Typecarte"] : "";
 $Nomcarte = isset($_POST["Nomcarte"])? $_POST["Nomcarte"] : "";
 $Numcarte = isset($_POST["Numcarte"])? $_POST["Numcarte"] : "";
 $Codecarte = isset($_POST["Codecarte"])? $_POST["Codecarte"] : "";
-$Date = isset($_POST["Date"])? $_POST["Date"] : "";
+$Datecarte = isset($_POST["Datecarte"])? $_POST["Datecarte"] : "";
+$Pseudo = $_SESSION["Pseudo"];
 
 //identifier votre BDD
 $database = "piscine";
@@ -23,12 +24,12 @@ $db_found = mysqli_select_db($db_handle, $database);
 if ($_POST["vendre"]) {
 	if ($db_found) 
 	{
-		$sql = "SELECT * FROM musique";
-		if ($Titre != "") {
+		$sql = "SELECT * FROM utilisateur";
+		if ($Numcarte != "") {
 //on cherche le livre avec les paramètres titre et auteur
-			$sql .= " WHERE Titre LIKE '%$Titre%'";
-			if ($Artiste != "") {
-				$sql .= " AND Artiste LIKE '%$Artiste%'";
+			$sql .= " WHERE Numcarte LIKE '%$Numcarte%'";
+			if ($Codecarte != "") {
+				$sql .= " AND Codecarte LIKE '%$Codecarte%'";
 			}
 		}
 		$result = mysqli_query($db_handle, $sql);
@@ -38,16 +39,18 @@ if ($_POST["vendre"]) {
 //augmenter la quantité de livres
 
 			//$Quantite= $Quantite + Quantite;
-			$sql = "UPDATE musique SET Quantite ='$Quantite'+Quantite WHERE Titre LIKE '%$Titre%' AND Artiste LIKE'%$Artiste%' ";
+			$sql = "UPDATE musique SET Quantite ='$Quantite'+Quantite WHERE Pseudo LIKE '%$Pseudo%' ";
 			$result = mysqli_query($db_handle, $sql);
 			header('Location: php/check.php');
   			exit();
 
 		 } else {
-			$sql = "INSERT INTO utilisateur(Adresse, Ville, CP, Pays, ) VALUES('$Titre','$Album','$Artiste' ,'$Prix', '$Categorie', '$Image','$Quantite', '$Description' )";
+		 	$sql = "UPDATE utilisateur SET Adresse ='$Adresse', Ville='$Ville', CP='$CP', Pays='$Pays', Numero='$Numero',Typecarte='$Typecarte',Numcarte='$Numcarte', Nomcarte='$Nomcarte', Datecarte='$Datecarte', Codecarte='$Codecarte' WHERE Pseudo LIKE '%$Pseudo%' ";
+			//$sql = "INSERT INTO utilisateur(Adresse, Ville, CP, Pays, Numero, Typecarte, Numcarte, Nomcarte, Datecarte, Codecarte,) VALUES('$Adresse', '$Ville', '$CP', '$Pays', '$Numero', '$Typecarte', '$Numcarte', '$Nomcarte', '$Datecarte' ,'$Codecarte' )";
 			$result = mysqli_query($db_handle, $sql);
 			header('Location: index.html');
   			exit();
+
   		}
 
 	}else {
