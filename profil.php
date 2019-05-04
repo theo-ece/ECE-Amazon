@@ -1,15 +1,53 @@
+<?php
+session_start();
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+$photo_profil="";
+$desc_nom="";
+$desc_prenom="";
+$pseudo = $_SESSION['Pseudo'];
+$mail="";
+$adresse="";
+$ville="";
+$cp="";
+$pays="";
+$carte="";
+
+
+$database = "piscine";
+$db_handle = mysqli_connect('localhost','root','');
+$db_found = mysqli_select_db($db_handle, $database);
+if($db_found){
+  $sql = "SELECT * FROM utilisateur WHERE Pseudo LIKE '$pseudo' ;";
+  $result = mysqli_query($db_handle, $sql);
+  if(mysqli_num_rows($result))                    
+  {
+    $resultat = $db_handle->query($sql);
+    $row = $resultat->fetch_assoc();
+    $photo_profil = $row["Photo"];
+    $desc_nom=$row["Nom"];
+    $desc_prenom=$row["Prenom"];
+    $mail=$row["Mail"];
+    $adresse=$row["Adresse"];
+    $ville=$row["Ville"];
+    $cp=$row["CP"];
+    $pays=$row["Pays"];
+    $carte=$row["Typecarte"];
+  }
+}
+mysqli_close($db_handle);
+?>
 <!DOCTYPE html>
 <html lang="">
 <head>
-<title>Produit</title>
+<title>Profil</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
-<script type="text/javascript" src="log/logs.js"></script>
 </head>
 <body id="top">
-<div class="wrapper row0">
-  <div id="topbar" class="hoc clear">
+<div class="wrapper row0" style="background-color: #232323">
+  <div id="topbar" class="hoc clear"> 
     <div class="fl_left">
       <ul>
         <li><i class="fa fa-phone"></i> +33 4 78 29 77 54</li>
@@ -18,11 +56,11 @@
     </div>
     <div class="fl_right">
       <ul>
-          <li><a href="index.html"><i class="fa fa-lg fa-home"></i></a></li>
-          <li><a href="php/check.php">Votre compte</a></li>
-          <li><a href="php/deconnexion.php">Deconnexion</a></li>
-          <li><a href="panier.php">Panier</a></li>
-        </ul>
+        <li><a href="index.html"><i class="fa fa-lg fa-home"></i></a></li>
+        <li><a href="php/check.php">Votre compte</a></li>
+        <li><a href="php/deconnexion.php">Déconnexion</a></li>
+        <li><a href="panier.php">Panier</a></li>
+      </ul>
     </div>
   </div>
 </div>
@@ -74,63 +112,37 @@
 </div>
 
 <div class="wrapper row3">
-  <main class="hoc container clear">
+  <main class="hoc container clear"> 
     <div class="sectiontitle">
-      <h6 class="heading">Nom du produit</h6>
-      <p>Le prix</p>
+      <h6 class="heading"><?php echo "$desc_nom $desc_prenom"; ?></h6>
+      <p>Profil client</p>
     </div>
     <div class="group">
       <div class="one_half first">
-        <p>Description.</p>
-        <p class="btmspace-50">Description.</p>
+        <img class="inspace-10 borderedbox" src="<?php echo $photo_profil?>" alt="">
       </div>
-      <div class="one_half"><img class="inspace-10 borderedbox" src="images/demo/480x400.png" alt=""></div>
+        <div class="one_half">
+          <ul class="nospace group">
+            <h6 class="heading font-x1">Informations personnelles</h6>
+            <li class="one_half first">
+              <p>Nom : <?php echo "$desc_nom"; ?> Prénom : <?php echo "$desc_prenom"; ?> Pseudo : <?php echo "$pseudo"; ?></p>
+            </li> 
+            <li class="one_half first">
+              <p>Adresse : <?php echo "$adresse $cp $ville $pays"; ?></p>
+            </li>    
+          </ul>
+        </div>
     </div>
     <div class="clear"></div>
   </main>
 </div>
-
-<div class="wrapper row3" style="background-color:#ACA4A3;">
-  <section class="hoc container clear"> 
-    <div class="sectiontitle">
-      <h6 class="heading" id="venteflash">Ventes Flash</h6>
-      <p>- Objets les plus vendus dans la catégorie -</p>
-    </div>
-    <ul class="nospace group services">
-      <li class="one_quarter first">
-        <article class="inverse"><a href="#"><i class="fa fa-3x fa-houzz"></i></a>
-          <h6 class="heading font-x1"><a href="#">Livres</a></h6>
-          <p>Felis quam eget dictum suscipit vivamus et nec metus maecenas</p>
-        </article>
-      </li>
-      <li class="one_quarter">
-        <article><a href="#"><i class="fa fa-3x fa-weibo"></i></a>
-          <h6 class="heading font-x1"><a href="#">Musique</a></h6>
-          <p>Dapibus consectetuer mauris aliquam urna dolor semper volutpat</p>
-        </article>
-      </li>
-      <li class="one_quarter">
-        <article class="inverse"><a href="#"><i class="fa fa-3x fa-wheelchair-alt"></i></a>
-          <h6 class="heading font-x1"><a href="#">Vêtement</a></h6>
-          <p>Id dictum vel est morbi lacinia sagittis mauris pellentesque id eros sit</p>
-        </article>
-      </li>
-      <li class="one_quarter">
-        <article><a href="#"><i class="fa fa-3x fa-viacoin"></i></a>
-          <h6 class="heading font-x1"><a href="#">Sport & Loisir</a></h6>
-          <p>Amet risus interdum ornare integer id justo ut diam suscipit laoreet</p>
-        </article>
-      </li>
-    </ul>
-  </section>
-</div>
-
 <div class="wrapper row5">
-  <div id="copyright" class="hoc clear">
-    <p class="fl_left">Copyright &copy; 2016 - All Rights Reserved - <a href="#">Domain Name</a></p>
+  <div id="copyright" class="hoc clear"> 
+    <p class="fl_left">Copyright &copy; 2016 - All Rights Reserved</p>
     <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
   </div>
 </div>
+
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 <!-- JAVASCRIPTS -->
 <script src="layout/scripts/jquery.min.js"></script>

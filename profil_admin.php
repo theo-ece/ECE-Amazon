@@ -1,34 +1,55 @@
-<!DOCTYPE html>
+<?php
+session_start();
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+$photo_profil="";
+$photo_mur="";
+$desc_nom="";
+$desc_prenom="";
+$pseudo = $_SESSION['Pseudo'];
+$mail="";
+$adresse="";
+$ville="";
+$cp="";
+$pays="";
+$carte="";
+
+
+$database = "piscine";
+$db_handle = mysqli_connect('localhost','root','');
+$db_found = mysqli_select_db($db_handle, $database);
+if($db_found){
+  $sql = "SELECT * FROM utilisateur WHERE Pseudo LIKE '$pseudo' ;";
+  $result = mysqli_query($db_handle, $sql);
+  if(mysqli_num_rows($result))                    
+  {
+    $resultat = $db_handle->query($sql);
+    $row = $resultat->fetch_assoc();
+    $photo_profil = $row["Photo"];
+    $photo_mur = $row["Image"];
+    $desc_nom=$row["Nom"];
+    $desc_prenom=$row["Prenom"];
+    $mail=$row["Mail"];
+    $adresse=$row["Adresse"];
+    $ville=$row["Ville"];
+    $cp=$row["CP"];
+    $pays=$row["Pays"];
+    $carte=$row["Typecarte"];
+  }
+}
+mysqli_close($db_handle);
+?>
+<!DOCTYPE html>-->
 <html lang="">
 <head>
   <title>Admin</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
-  <script type="text/javascript" src="logs.js"></script>
-  <script type="text/javascript">
-    function test_annonce(){
-      if(document.getElementById("ID_vendeur").value==='')
-      {
-        document.getElementById("problem_sup_vendeur").innerHTML = "Champ vide";
-      }
-    }
-    function test_vendeur(){
-      if(document.getElementById("ID").value==='' || document.getElementById("type").value==='None')
-      {
-        document.getElementById("problem_sup_annonce").innerHTML = "Champs vide";
-      }
-    }
-    function test_ajout()
-      if(document.getElementById("mail").value==='' || document.getElementById("pseudo").value==='None' || document.getElementById("mdp").value==='None')
-      {
-        document.getElementById("problem_ajout").innerHTML = "Champs vide";
-      }
-  </script>
 </head>
 <body id="top">
 <div class="wrapper row0" style="background-color: #232323">
-  <div id="topbar" class="hoc clear">
+  <div id="topbar" class="hoc clear"> 
     <div class="fl_left">
       <ul>
         <li><i class="fa fa-phone"></i> +33 4 78 29 77 54</li>
@@ -92,51 +113,60 @@
   </nav>
 </div>
 
-  <div class="wrapper bgded overlay" style="background-image:url('images/demo/backgrounds/01.png');">
-    <div id="pageintro" class="hoc clear">
+  <div class="wrapper bgded overlay" style="background-image:url('<?php echo $photo_mur; ?>');">
+    <div id="pageintro" class="hoc clear"> 
       <article>
         <p>Profil Admin</p>
         <h3 class="heading">Bienvenue</h3>
         <footer>
           <ul class="nospace inline pushright">
-            <li><a class="btn" href="#ADD">Ajout d'un article</a></li>
+            <li><a class="btn" href="#ADD">Ajouter un article</a></li>
             <li><a class="btn inverse" href="php/deconnexion.php">Se déconnecter</a></li>
           </ul>
         </footer>
       </article>
     </div>
   </div>
-
   <div class="wrapper row3">
     <main class="hoc container clear"> 
       <div class="sectiontitle">
-        <h6 class="heading">Ajouter ou supprimer un vendeur ou un artile</h6>
+        <h6 class="heading">Ajout ou suppression</h6>
       </div>
-      <div class="group">
-        <div class="one_half first">
+      <div class="group">        
+        <div class="one_half first"><img class="inspace-10 borderedbox" src="<?php echo $photo_profil?>" alt=""></div>
+        <div class="one_half">
+          <ul class="nospace group">
+            <h6 class="heading font-x1">Informations personnelles</h6>
+            <li class="one_half first">
+              <p>Nom : <?php echo "$desc_nom"; ?> Prénom : <?php echo "$desc_prenom"; ?> Pseudo : <?php echo "$pseudo"; ?></p>
+            </li> 
+            <li class="one_half first">
+              <p>Adresse : <?php echo "$adresse $cp $ville $pays"; ?></p>
+            </li>    
+          </ul>
+        </div>
+        <div class="one_half" align="center">
           <ul class="nospace group">
             <li class="one_half first" id="ADD">
               <article><a href="vendre.html"><i class="icon btmspace-30 fa fa-joomla"></i></a>
                 <h6 class="heading font-x1">Ajouter un article à vendre</h6>
               </article>
             </li> 
-            <li class="one_half first" id="delete">
+            <li class="one_half " id="delete">
               <article><i class="icon btmspace-30 fa fa-joomla"></i>
                 <h6 class="heading font-x1">Suprimer annonce</h6>
                 <form method="post" class="login-form" action="php/sup_annonce.php">
-                  <select name = "type" id="type">
-                    <option value = "None" selected>Type</option>
-                    <option value = "livre">Livre</option>
-                    <option value = "musiqu">Musique</option>
-                    <option value = "sport">Sport & Loisir</option>
-                    <option value = "vetement">Vêtements</option>
-                </select><br>
+                  <input class="btmspace-15" type="text" value="" id="type" name="type" placeholder="Type d'élément">
                   <input class="btmspace-15" type="number" value="" id="ID" name="ID" placeholder="ID de l'élément">
-                  <button type="submit" value="submit">Suprimer l'annonce</button>
+                  <button type="submit" onclick="" value="submit">Suprimer l'annonce</button>
                   <p><span id="problem_sup_annonce"></span></p>
                 </form>
               </article>
-            </li>
+            </li>    
+          </ul>
+        </div>
+        <div class="one_half first" align="center">
+          <ul class="nospace group">
             <li class="one_half">
               <article><i class="icon btmspace-30 fa fa-joomla"></i>
                 <h6 class="heading font-x1">Suprimer Vendeur</h6>
@@ -146,7 +176,11 @@
                   <p><span id="problem_sup_vendeur"></span></p>
                 </form>
               </article>
-            </li>       
+            </li>
+          </ul>
+        </div>    
+        <div class="one_half" align="center">
+          <ul class="nospace group">   
             <li class="one_half">
               <article><i class="icon btmspace-30 fa fa-joomla"></i>
                 <h6 class="heading font-x1">Ajouter Vendeur</h6>
@@ -161,18 +195,10 @@
             </li>       
           </ul>
         </div>
-        <div class="one_half"><img class="inspace-10 borderedbox" src="images/smiley.jpg" alt=""></div>
       </div>
       <div class="clear"></div>
     </main>
   </div>
-
-<div class="wrapper row5">
-  <div id="copyright" class="hoc clear"> 
-    <p class="fl_left">Copyright &copy; 2016 - All Rights Reserved</p>
-    <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
-  </div>
-</div>
 
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 <!-- JAVASCRIPTS -->
