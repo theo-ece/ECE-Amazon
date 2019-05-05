@@ -13,6 +13,7 @@ $ville="";
 $cp="";
 $pays="";
 $carte="";
+$num="";
 
 
 $database = "piscine";
@@ -35,11 +36,12 @@ if($db_found){
     $cp=$row["CP"];
     $pays=$row["Pays"];
     $carte=$row["Typecarte"];
+    $num=$row["Numero"];
   }
 }
 mysqli_close($db_handle);
 ?>
-<!DOCTYPE html>-->
+<!DOCTYPE html>
 <html lang="">
 <head>
   <title>Admin</title>
@@ -58,7 +60,7 @@ mysqli_close($db_handle);
     </div>
     <div class="fl_right">
       <ul>
-        <li><a href="index.html"><i class="fa fa-lg fa-home"></i></a></li>
+        <li><a href="index.php"><i class="fa fa-lg fa-home"></i></a></li>
         <li><a href="php/check.php">Votre compte</a></li>
         <li><a href="php/deconnexion.php">Déconnexion</a></li>
         <li><a href="panier.php">Panier</a></li>
@@ -70,41 +72,41 @@ mysqli_close($db_handle);
 <div class="wrapper row1" style="background-image:url(images/paris.jpeg);>
   <header id="header" class="hoc clear">
     <div id="logo" class="sectiontitle">
-      <h1><a href="index.html" style="font-size: x-large; color: #FFFFFF; font-weight: 800;"><br>ECE Amazon</a></h1>
+      <h1><a href="index.php" style="font-size: x-large; color: #FFFFFF; font-weight: 800;"><br>ECE Amazon</a></h1>
     </div>
   <nav id="mainav" class="hoc clear"> 
     <ul class="clear">
-      <li><a class="drop" href="categories/gallery.html">Livre</a>
+      <li><a class="drop" href="achatlivre.php">Livre</a>
         <ul>
-          <li><a href="categories/full-width.html">Jeunesse</a></li>
-          <li><a href="catégories/sidebar-left.html">Aventure</a></li>
-          <li><a href="categories/sidebar-right.html">Policier</a></li>
-          <li><a href="categories/full-width.html">Science Fiction</a></li>
-          <li><a href="catégories/sidebar-left.html">Les grands classiques</a></li>
+          <li><a href="achatlivre.php #Jeunesse">Jeunesse</a></li>
+          <li><a href="achatlivre.php #Aventure">Aventure</a></li>
+          <li><a href="achatlivre.php #Policier">Policier</a></li>
+          <li><a href="achatlivre.php #ScienceF">Science Fiction</a></li>
+          <li><a href="achatlivre.php #Classique">Les grands classiques</a></li>
         </ul>
       </li>
-      <li><a class="drop" href="categories/full-width.html">Musique</a>
+      <li><a class="drop" href="achatmusique.php">Musique</a>
         <ul>
-          <li><a href="musique/full-width.html">Jazz</a></li>
-          <li><a href="musique/sidebar-left.html">Classique</a></li>
-          <li><a href="musique/sidebar-right.html">Pop</a></li>
-          <li><a href="musique/full-width.html">Rock</a></li>
-          <li><a href="musique/sidebar-left.html">Reggae</a></li>
+          <li><a href="achatmusique.php #Jazz">Jazz</a></li>
+          <li><a href="achatmusique.php #Classique">Classique</a></li>
+          <li><a href="achatmusique.php #Pop">Pop</a></li>
+          <li><a href="achatmusique.php #Rock">Rock</a></li>
+          <li><a href="achatmusique.php #Reggae">Reggae</a></li>
         </ul>
       </li>
-      <li><a class="drop" href="catégories/sidebar-left.html">Vêtements</a>
+      <li><a class="drop" href="achatvetement.php">Vêtements</a>
         <ul>
-          <li><a href="vetements/full-width.html">Haut</a></li>
-          <li><a href="vetements/sidebar-left.html">Bas</a></li>
-          <li><a href="vetements/sidebar-right.html">Chaussures</a></li>
+          <li><a href="achatvetement.php #Haut">Haut</a></li>
+          <li><a href="achatvetement.php #Bas">Bas</a></li>
+          <li><a href="achatvetement.php #Chaussure">Chaussures</a></li>
         </ul>
       </li>
-      <li><a class="drop" href="categories/sidebar-right.html">Sport & Loisir</a>
+      <li><a class="drop" href="achatsport.php">Sport & Loisir</a>
         <ul>
-          <li><a href="s&l/full-width.html">Ballon</a></li>
-          <li><a href="s&l/sidebar-left.html">Raquette</a></li>
-          <li><a href="s&l/sidebar-right.html">Sport d'Hiver</a></li>
-          <li><a href="s&l/full-width.html">Vélo</a></li>
+          <li><a href="achatsport.php #Ballon">Ballon</a></li>
+          <li><a href="achatsport.php #Raquette">Raquette</a></li>
+          <li><a href="achatsport.php #Hiver">Sport d'Hiver</a></li>
+          <li><a href="achatsport.php #Velo">Vélo</a></li>
         </ul>
       </li>
       <li><a href="#venteflash">Vente Flash</a></li>
@@ -130,7 +132,7 @@ mysqli_close($db_handle);
   <div class="wrapper row3">
     <main class="hoc container clear"> 
       <div class="sectiontitle">
-        <h6 class="heading">Ajout ou suppression</h6>
+        <h6 class="heading">Profil</h6>
       </div>
       <div class="group">        
         <div class="one_half first"><img class="inspace-10 borderedbox" src="<?php echo $photo_profil?>" alt=""></div>
@@ -193,6 +195,27 @@ mysqli_close($db_handle);
                 </form>
               </article>
             </li>       
+          </ul>
+        </div>        
+        <div class="one_half first" align="center">
+          <ul class="nospace group">
+            <li class="one_half " id="delete">
+                <h6 class="heading font-x1"><br><br>Modifier profil</h6>
+                <form method="post" class="login-form" action="php/modif.php" enctype="multipart/form-data">
+                  <input class="btmspace-15" type="text" value='<?php echo "$desc_nom"; ?>' id="nom" name="nom" placeholder="Nom">
+                  <input class="btmspace-15" type="text" value='<?php echo "$desc_prenom"; ?>' id="prenom" name="prenom" placeholder="Prénom">
+                  <input class="btmspace-15" type="text" value='<?php echo "$mail"; ?>' id="mail" name="mail" placeholder="E-mail">
+                  <input class="btmspace-15" type="text" value='<?php echo "$adresse"; ?>' id="adresse" name="adresse" placeholder="Adresse">
+                  <input class="btmspace-15" type="number" value='<?php echo "$cp"; ?>' id="cp" name="cp" placeholder="Code Postal">
+                  <input class="btmspace-15" type="text" value='<?php echo "$ville"; ?>' id="ville" name="ville" placeholder="Ville">
+                  <input class="btmspace-15" type="text" value='<?php echo "$pays"; ?>' id="pays" name="pays" placeholder="Pays">
+                  <input class="btmspace-15" type="number" value='<?php echo "$num"; ?>' id="numero" name="numero" placeholder="Numéro">
+                  <label for="image_p">Modifier votre photo de profil</label><input type="file" name="image_p" id="image_p">
+                  <label for="image_m">Modifier votre photo de mur</label><input type="file" name="image_m" id="image_m">
+                  <button type="submit" onclick="" value="submit">Modifier profil</button>
+                  <p><span id="problem_sup_annonce"></span></p>
+                </form>
+            </li>    
           </ul>
         </div>
       </div>

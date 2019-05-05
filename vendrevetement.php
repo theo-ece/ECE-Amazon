@@ -59,9 +59,7 @@ $Image = "images/Vetement/".basename( $_FILES["image"]["name"]);
 $Quantite = isset($_POST["Quantite"])? $_POST["Quantite"] : "";
 $Description = isset($_POST["Description"])? $_POST["Description"] : "";
 $Taille = isset($_POST["Taille"])? $_POST["Taille"] : "";
-
-$Video = isset($_POST["video"])? $_POST["video"] : "";
-
+$Video = isset($_POST["Video"])? $_POST["Video"] : "";
 
 
 //identifier votre BDD
@@ -95,7 +93,7 @@ if ($_POST["vendrevetement"]) {
             exit();
 
          } else {
-			$sql = "INSERT INTO vetement(Nom,Marque,Couleur,Prix,Cat,Genre,Image,Quantite,Description,Taille) VALUES('$Nom','$Marque','$Couleur','$Prix','$Categorie','$Genre','$Image','$Quantite','$Description','$Taille')";
+			$sql = "INSERT INTO vetement(Nom,Marque,Couleur,Prix,Cat,Genre,Image,Quantite,Description,Taille, Video) VALUES('$Nom','$Marque','$Couleur','$Prix','$Categorie','$Genre','$Image','$Quantite','$Description','$Taille', '$Video')";
 			$result = mysqli_query($db_handle, $sql);
             echo "<script>alert(\"la vente s'est bien effectuée\")</script>";
             /*echo( "?><script>alert(\"la vente s'est bie effectuée\" )</script>; <?php " ); */
