@@ -57,7 +57,7 @@ $Resume = isset($_POST["Resume"])? $_POST["Resume"] : "";
 $Categorie = isset($_POST["Categorie"])? $_POST["Categorie"] : "";
 $Quantite = isset($_POST["Quantite"])? $_POST["Quantite"] : "";
 $Image = "images/Livre/".basename( $_FILES["image"]["name"]);
-$Video = isset($_POST["video"])? $_POST["video"] : "";
+$Video = isset($_POST["Video"])? $_POST["Video"] : "";
 
 
 //identifier votre BDD
@@ -89,7 +89,7 @@ if ($_POST["vendrelivre"]) {
             exit();
 
          } else {
-			$sql = "INSERT INTO livre(Titre,Auteur,Prix,Editeur,Resume,Cat,Quantite,Image) VALUES('$Titre','$Auteur', '$Prix', '$Editeur', '$Resume','$Categorie' ,'$Quantite','$Image')";
+			$sql = "INSERT INTO livre(Titre,Auteur,Prix,Editeur,Resume,Cat,Quantite,Image,Video) VALUES('$Titre','$Auteur', '$Prix', '$Editeur', '$Resume','$Categorie' ,'$Quantite','$Image','$Video')";
 			$result = mysqli_query($db_handle, $sql);
 			header('Location:php/check.php');
   			exit();

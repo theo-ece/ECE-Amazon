@@ -22,7 +22,7 @@ $total=0;
     </div>
     <div class="fl_right">
       <ul>
-        <li><a href="index.html"><i class="fa fa-lg fa-home"></i></a></li>
+        <li><a href="index.php"><i class="fa fa-lg fa-home"></i></a></li>
         <li><a href="php/check.php">Votre compte</a></li>
         <li><a href="php/deconnexion.php">Deconnexion</a></li>
         <li><a href="panier.php">Panier</a></li>
@@ -34,7 +34,7 @@ $total=0;
 <div class="wrapper row1" style="background-image:url(images/paris.jpeg);>
   <header id="header" class="hoc clear"> 
     <div id="logo" class="sectiontitle">
-      <h1><a href="index.html" style="font-size: x-large; color: #FFFFFF; font-weight: 800;"><br>ECE Amazon</a></h1>
+      <h1><a href="index.php" style="font-size: x-large; color: #FFFFFF; font-weight: 800;"><br>ECE Amazon</a></h1>
     </div>
   </header>
   <nav id="mainav" class="hoc clear"> <br></nav>
@@ -81,18 +81,11 @@ $total=0;
           mysqli_close($db_handle);
         } // fin du if $_SESSION
         ?> 
-        <article><br><a href="payer.html">Passer la commande</a></article>
+        <article><br><a href="payer.php">Passer la commande</a></article>
         <br><br><br><br><br><br><br><br><br><br><br><br>
       </div>
       <div class="clear"></div>
     </main>
-  </div>
-  
-  <div class="wrapper row5">
-    <div id="copyright" class="hoc clear"> 
-      <p class="fl_left">Copyright &copy; 2016 - All Rights Reserved</p>
-      <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
-    </div>
   </div>
   <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
   <!-- JAVASCRIPTS -->
