@@ -322,7 +322,7 @@ Licence URI: http://www.os-templates.com/template-terms
 					if ($db_found) 
 					{
 
-						$sql= "SELECT Nom, Marque, Prix, Nbvendu, Image FROM vetement WHERE Nbvendu=(SELECT max(Nbvendu) FROM vetement)";
+						$sql= "SELECT Nom, Marque, Prix, Nbvendu, Image FROM sport WHERE Nbvendu=(SELECT max(Nbvendu) FROM sport)";
 						$result = mysqli_query($db_handle,$sql);
 
 						if (!$result) {

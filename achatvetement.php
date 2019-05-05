@@ -181,7 +181,7 @@ Licence URI: http://www.os-templates.com/template-terms
 				if ($db_found) 
 				{
 
-					$sql= "SELECT Nom, Marque, Prix, Nbvendu,Image FROM vetement WHERE Cat LIKE 'Bas' Order by Prix";
+					$sql= "SELECT Nom, Marque, Prix, Nbvendu,Image FROM vetement WHERE Cat LIKE 'Pantalon' Order by Prix";
 					$result = mysqli_query($db_handle,$sql);
 					$Nbdata = mysqli_num_rows($result);
 					$Nbcol=4;

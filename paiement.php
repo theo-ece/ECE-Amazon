@@ -1,3 +1,4 @@
+
 <?php
 
 //recuperer les données venant de la page HTML
@@ -39,7 +40,7 @@ if ($_POST["vendre"]) {
 //augmenter la quantité de livres
 
 			//$Quantite= $Quantite + Quantite;
-			$sql = "UPDATE musique SET Quantite ='$Quantite'+Quantite WHERE Pseudo LIKE '%$Pseudo%' ";
+			$sql = "UPDATE musique SET Quantite =Quantite-'$Quantite' WHERE Pseudo LIKE '%$Pseudo%' ";
 			$result = mysqli_query($db_handle, $sql);
 			header('Location: php/check.php');
   			exit();
