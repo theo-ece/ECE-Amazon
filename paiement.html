@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+<title>Interlingua</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body id="top">
+<div class="wrapper row0">
+  <div id="topbar" class="hoc clear">
+    <div class="fl_left">
+      <ul>
+        <li><i class="fa fa-phone"></i> +33 4 78 29 77 54</li>
+        <li><i class="fa fa-envelope-o"></i> contact@ece.fr</li>
+      </ul>
+    </div>
+    <div class="fl_right">
+      <ul>
+        <li><a href="index.php"><i class="fa fa-lg fa-home"></i></a></li>
+        <li><a href="php/check.php">Votre compte</a></li>
+        <li><a href="php/deconnexion.php">Deconnexion</a></li>
+        <li><a href="panier.php">Panier</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper row1" style="background-image:url(images/paris.jpeg);>
+  <header id="header" class="hoc clear">
+    <div id="logo" class="sectiontitle">
+      <h1><a href="index.php" style="font-size: x-large; color: #FFFFFF; font-weight: 800;"><br>ECE Amazon</a></h1>
+    </div>
+    <nav id="mainav" class="hoc clear"> <br></nav>
+  </header>
+<div class="wrapper row3">
+  <main class="hoc container clear"> 
+    <!-- main body -->
+    
+<div class="wrapper row3">
+  <main class="hoc container clear"> 
+    <!-- main body -->
+    
+    <div class="sectiontitle">
+      <h6>Paiement</h6><br><br>
+      <p>- Rentrer les paramètres pour effectuer votre paiement -</p>
+    </div>
+    <div align="center">
+      <form action="paiement.php"  method="post" >
+        <div style="float: left ; margin-left: 290px;">
+        <input type="text" name="Adresse" placeholder="adresse"><br>
+        <input type="text" name="Ville" placeholder="ville"><br>
+        <input type="number" name="CP" placeholder="code postal" required minlength="5" maxlength="5" size="5"><br>
+        <input type="name" name="Pays" placeholder="pays"><br>
+        <input type="number" name="Numero" placeholder="téléphone" size="20"><br>
+        </div>
+        <div style="float: left; margin-left: 60px;">
+           <select name = "Typecarte" id="type">
+                    <option >Type</option>
+                    <option>Master Card</option>
+                    <option>Paypal</option>
+                    <option>Visa</option>
+                    <option >American Express</option>
+        </select><br>
+        <input type="name" name="Nomcarte" placeholder="nom sur la carte"><br>
+        <input type="Number" name="Numcarte" placeholder="numéro carte" required minlength="16" maxlength="16" size="20"><br>
+        <input type="Number" name="Codecarte" placeholder="code sécurité" required minlength="3" maxlength="4" size="20"><br>
+        <input type="date" name="Datecarte" placeholder="date d'expiration" id="dateExpiration"><br>
+        <input type="submit" name="vendre" value="valider">
+        </div>
+      
+      </div>
+  </main>
+</div>
+
+<div class="wrapper row5">
+  <div id="copyright" class="hoc clear">
+    <p class="fl_left">Copyright &copy; 2016 - All Rights Reserved - <a href="#">Domain Name</a></p>
+    <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+  </div>
+</div>
+
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="layout/scripts/jquery.min.js"></script>
+<script src="layout/scripts/jquery.backtotop.js"></script>
+<script src="layout/scripts/jquery.mobilemenu.js"></script>
+</body>
+</html>

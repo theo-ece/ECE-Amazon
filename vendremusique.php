@@ -5,7 +5,7 @@ $target_file = $target_dir . basename($_FILES["image"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 // Check if image file is a actual image or fake image
-if(isset($_POST["vendrelivre"])) 
+if(isset($_POST["vendremusique"])) 
 {
     $check = getimagesize($_FILES["image"]["tmp_name"]);
     if($check !== false) {
@@ -57,6 +57,7 @@ $Description = isset($_POST["Description"])? $_POST["Description"] : "";
 $Categorie = isset($_POST["Categorie"])? $_POST["Categorie"] : "";
 $Quantite = isset($_POST["Quantite"])? $_POST["Quantite"] : "";
 $Image = "images/Musique/".basename( $_FILES["image"]["name"]);
+$Video = isset($_POST["Video"])? $_POST["Video"] : "";
 
 //identifier votre BDD
 $database = "piscine";
@@ -68,10 +69,32 @@ $db_found = mysqli_select_db($db_handle, $database);
 if ($_POST["vendremusique"]) {
 	if ($db_found) 
 	{
-			$sql = "INSERT INTO musique(Titre,Album,Artiste,Prix,Cat,Image,Quantite,Description) VALUES('$Titre','$Album','$Artiste' ,'$Prix', '$Categorie', '$Image','$Quantite', '$Description' )";
+		$sql = "SELECT * FROM musique";
+		if ($Titre != "") {
+//on cherche le livre avec les paramètres titre et auteur
+			$sql .= " WHERE Titre LIKE '%$Titre%'";
+			if ($Artiste != "") {
+				$sql .= " AND Artiste LIKE '%$Artiste%'";
+			}
+		}
+		$result = mysqli_query($db_handle, $sql);
+//regarder s'il y a de résultat
+		if (mysqli_num_rows($result) != 0) {
+//le livre est déjà dans la BDD
+//augmenter la quantité de livres
+
+			//$Quantite= $Quantite + Quantite;
+			$sql = "UPDATE musique SET Quantite ='$Quantite'+Quantite WHERE Titre LIKE '%$Titre%' AND Artiste LIKE'%$Artiste%' ";
 			$result = mysqli_query($db_handle, $sql);
-			header('Location: http://localhost/ECE-Amazon-master/vendre.html');
+			header('Location: php/check.php');
   			exit();
+
+		 } else {
+			$sql = "INSERT INTO musique(Titre,Album,Artiste,Prix,Cat,Image,Quantite,Description, Video) VALUES('$Titre','$Album','$Artiste' ,'$Prix', '$Categorie', '$Image','$Quantite', '$Description', '$Video' )";
+			$result = mysqli_query($db_handle, $sql);
+			header('Location: php/check.php');
+  			exit();
+  		}
 		
 		
 	}else {

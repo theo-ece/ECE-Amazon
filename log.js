@@ -27,7 +27,7 @@ function connec_verif(){
 	if(online == false){
 		window.location.href = "/login.html";
 	} else {
-		window.location.href = "index.html";
+		window.location.href = "index.php";
 	}
 }
 

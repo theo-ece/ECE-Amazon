@@ -57,7 +57,7 @@ $Resume = isset($_POST["Resume"])? $_POST["Resume"] : "";
 $Categorie = isset($_POST["Categorie"])? $_POST["Categorie"] : "";
 $Quantite = isset($_POST["Quantite"])? $_POST["Quantite"] : "";
 $Image = "images/Livre/".basename( $_FILES["image"]["name"]);
-$Video = isset($_POST["video"])? $_POST["video"] : "";
+$Video = isset($_POST["Video"])? $_POST["Video"] : "";
 
 
 //identifier votre BDD
@@ -70,10 +70,30 @@ $db_found = mysqli_select_db($db_handle, $database);
 if ($_POST["vendrelivre"]) {
 	if ($db_found) 
 	{
-			$sql = "INSERT INTO livre(Titre,Auteur,Prix,Editeur,Resume,Cat,Quantite,Image) VALUES('$Titre','$Auteur', '$Prix', '$Editeur', '$Resume','$Categorie' ,'$Quantite','$Image')";
+        $sql = "SELECT * FROM livre";
+        if ($Titre != "") {
+//on cherche le livre avec les paramètres titre et auteur
+            $sql .= " WHERE Titre LIKE '%$Titre%'";
+            if ($Auteur != "") {
+                $sql .= " AND Auteur LIKE '%$Auteur%'";
+            }
+        }
+        $result = mysqli_query($db_handle, $sql);
+//regarder s'il y a de résultat
+        if (mysqli_num_rows($result) != 0) {
+//le livre est déjà dans la BDD
+//augmenter la quantité de livres
+            $sql = "UPDATE livre SET Quantite ='$Quantite'+Quantite WHERE Titre LIKE '%$Titre%' AND Auteur LIKE'%$Auteur%' ";
+            $result = mysqli_query($db_handle, $sql);
+            header('Location: php/check.php');
+            exit();
+
+         } else {
+			$sql = "INSERT INTO livre(Titre,Auteur,Prix,Editeur,Resume,Cat,Quantite,Image,Video) VALUES('$Titre','$Auteur', '$Prix', '$Editeur', '$Resume','$Categorie' ,'$Quantite','$Image','$Video')";
 			$result = mysqli_query($db_handle, $sql);
-			header('Location: http://localhost/ECE-Amazon-master/vendre.html');
+			header('Location:php/check.php');
   			exit();
+        }
 			
 	}else {
 echo "Database not found";

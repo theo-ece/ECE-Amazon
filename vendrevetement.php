@@ -59,8 +59,7 @@ $Image = "images/Vetement/".basename( $_FILES["image"]["name"]);
 $Quantite = isset($_POST["Quantite"])? $_POST["Quantite"] : "";
 $Description = isset($_POST["Description"])? $_POST["Description"] : "";
 $Taille = isset($_POST["Taille"])? $_POST["Taille"] : "";
-
-$Video = isset($_POST["video"])? $_POST["video"] : "";
+$Video = isset($_POST["Video"])? $_POST["Video"] : "";
 
 
 //identifier votre BDD
@@ -69,14 +68,48 @@ $database = "piscine";
 //Rappel: votre serveur = localhost et votre login = root et votre password = <rien>
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
+/*$p = $_SERVER['PHP_SELF'];
+$page = basename ($p);*/
 
 if ($_POST["vendrevetement"]) {
 	if ($db_found) 
 	{
-			$sql = "INSERT INTO vetement(Nom,Marque,Couleur,Prix,Cat,Genre,Image,Quantite,Description,Taille) VALUES('$Nom','$Marque','$Couleur','$Prix','$Categorie','$Genre','$Image','$Quantite','$Description','$Taille')";
+        $sql = "SELECT * FROM vetement";
+       if ($Nom != "") {
+//on cherche le livre avec les paramètres titre et auteur
+            $sql .= " WHERE Nom LIKE '%$Nom%'";
+            if ($Marque != "") {
+                $sql .= " AND Marque LIKE '%$Marque%'";
+            }
+        }
+        $result = mysqli_query($db_handle, $sql);
+//regarder s'il y a de résultat
+        if (mysqli_num_rows($result) != 0) {
+//le livre est déjà dans la BDD
+//augmenter la quantité de livres
+            $sql = "UPDATE vetement SET Quantite ='$Quantite'+Quantite WHERE Nom LIKE '%$Nom%' AND Marque LIKE'%$Marque%' ";
+            $result = mysqli_query($db_handle, $sql);
+            header('Location: php/check.php');
+            exit();
+
+         } else {
+			$sql = "INSERT INTO vetement(Nom,Marque,Couleur,Prix,Cat,Genre,Image,Quantite,Description,Taille, Video) VALUES('$Nom','$Marque','$Couleur','$Prix','$Categorie','$Genre','$Image','$Quantite','$Description','$Taille', '$Video')";
 			$result = mysqli_query($db_handle, $sql);
-			header('Location: http://localhost/ECE-Amazon-master/vendre.html');
-  			exit();
+            echo "<script>alert(\"la vente s'est bien effectuée\")</script>";
+            /*echo( "?><script>alert(\"la vente s'est bie effectuée\" )</script>; <?php " ); */
+            /*if($page == "php/check.php")
+            {
+              echo "<script>alert(\"la vente s'est bien effectuée\")</script>";
+            }
+            $w1 = new EvTimer(0, 0, function ($w) {
+            echo "<script>alert(\"la vente s'est bien effectuée\")</script>";
+            Ev::iteration() == 5 and $w->stop();
+            });*/
+            header('Location: php/check.php');
+            exit();
+        }
+        
+
 			
 	}else {
 echo "Database not found";

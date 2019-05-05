@@ -1,4 +1,50 @@
-<!DOCTYPE html>-->
+<?php
+session_start();
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+$photo_profil="";
+$photo_mur="";
+$desc_nom="";
+$desc_prenom="";
+$pseudo = $_SESSION['Pseudo'];
+$mail="";
+$adresse="";
+$ville="";
+$cp="";
+$pays="";
+$carte="";
+$num="";
+
+
+
+
+$database = "piscine";
+$db_handle = mysqli_connect('localhost','root','');
+$db_found = mysqli_select_db($db_handle, $database);
+if($db_found){
+  $sql = "SELECT * FROM utilisateur WHERE Pseudo LIKE '$pseudo' ;";
+  $result = mysqli_query($db_handle, $sql);
+  if(mysqli_num_rows($result))                    
+  {
+    $resultat = $db_handle->query($sql);
+    $row = $resultat->fetch_assoc();
+    $photo_profil = $row["Photo"];
+    $photo_mur = $row["Image"];
+    $desc_nom=$row["Nom"];
+    $desc_prenom=$row["Prenom"];
+    $mail=$row["Mail"];
+    $adresse=$row["Adresse"];
+    $ville=$row["Ville"];
+    $cp=$row["CP"];
+    $pays=$row["Pays"];
+    $carte=$row["Typecarte"];
+    $num=$row["Numero"];
+  }
+}
+mysqli_close($db_handle);
+?>
+
+<!DOCTYPE html>
 <html lang="">
 <head>
   <title>Vendeur</title>
@@ -18,7 +64,7 @@
       </div>
       <div class="fl_right">
         <ul>
-          <li><a href="index.php #venteflash"><i class="fa fa-lg fa-home"></i></a></li>
+          <li><a href="index.php"><i class="fa fa-lg fa-home"></i></a></li>
           <li><a href="php/check.php">Votre compte</a></li>
           <li><a href="php/deconnexion.php">Déconnexion</a></li>
           <li><a href="panier.php">Panier</a></li>
@@ -26,7 +72,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="wrapper row1" style="background-image:url(images/paris.jpeg);>
   <header id="header" class="hoc clear">
     <div id="logo" class="sectiontitle">
@@ -73,7 +119,7 @@
   </nav>
 </div>
 
-  <div class="wrapper bgded overlay" style="background-image:url('images/demo/backgrounds/01.png');">
+  <div class="wrapper bgded overlay" style="background-image:url('<?php echo $photo_mur; ?>');">
     <div id="pageintro" class="hoc clear"> 
       <article>
         <p>Profil Vendeur</p>
@@ -90,17 +136,29 @@
   <div class="wrapper row3">
     <main class="hoc container clear"> 
       <div class="sectiontitle">
-        <h6 class="heading">Ajout ou suppression d'un article</h6>
+        <h6 class="heading">Profil vendeur</h6>
       </div>
-      <div class="group">
-        <div class="one_half first">
+      <div class="group">        
+        <div class="one_half first"><img class="inspace-10 borderedbox" src="<?php echo $photo_profil?>" alt=""></div>
+        <div class="one_half">
+          <ul class="nospace group">
+            <h6 class="heading font-x1">Informations personnelles</h6>
+            <li class="one_half first">
+              <p>Nom : <?php echo "$desc_nom"; ?> <br> Prénom : <?php echo "$desc_prenom"; ?> <br> Pseudo : <?php echo "$pseudo"; ?><br>E-mail : <?php echo "$mail"; ?></p>
+            </li> 
+            <li class="one_half first">
+              <p>Adresse : <?php echo "$adresse $cp $ville $pays"; ?></p>
+            </li>    
+          </ul>
+        </div>
+        <div class="one_half" align="center">
           <ul class="nospace group">
             <li class="one_half first" id="ADD">
               <article><a href="vendre.html"><i class="icon btmspace-30 fa fa-joomla"></i></a>
                 <h6 class="heading font-x1">Ajouter un article à vendre</h6>
               </article>
             </li> 
-            <li class="one_half first" id="delete">
+            <li class="one_half " id="delete">
               <article><i class="icon btmspace-30 fa fa-joomla"></i>
                 <h6 class="heading font-x1">Suprimer annonce</h6>
                 <form method="post" class="login-form" action="php/sup_annonce.php">
@@ -113,17 +171,31 @@
             </li>    
           </ul>
         </div>
-        <div class="one_half"><img class="inspace-10 borderedbox" src="images/smiley.jpg" alt=""></div>
+        <div class="one_half first" align="center">
+          <ul class="nospace group">
+            <li class="one_half " id="delete">
+                <h6 class="heading font-x1"><br><br>Modifier profil</h6>
+                <form method="post" class="login-form" action="php/modif.php" enctype="multipart/form-data">
+                  <input class="btmspace-15" type="text" value='<?php echo "$desc_nom"; ?>' id="nom" name="nom" placeholder="Nom">
+                  <input class="btmspace-15" type="text" value='<?php echo "$desc_prenom"; ?>' id="prenom" name="prenom" placeholder="Prénom">
+                  <input class="btmspace-15" type="text" value='<?php echo "$mail"; ?>' id="mail" name="mail" placeholder="E-mail">
+                  <input class="btmspace-15" type="text" value='<?php echo "$adresse"; ?>' id="adresse" name="adresse" placeholder="Adresse">
+                  <input class="btmspace-15" type="number" value='<?php echo "$cp"; ?>' id="cp" name="cp" placeholder="Code Postal">
+                  <input class="btmspace-15" type="text" value='<?php echo "$ville"; ?>' id="ville" name="ville" placeholder="Ville">
+                  <input class="btmspace-15" type="text" value='<?php echo "$pays"; ?>' id="pays" name="pays" placeholder="Pays">
+                  <input class="btmspace-15" type="number" value='<?php echo "$num"; ?>' id="numero" name="numero" placeholder="Numéro">
+                  <label for="image_p">Modifier votre photo de profil</label><input type="file" name="image_p" id="image_p">
+                  <label for="image_m">Modifier votre photo de mur</label><input type="file" name="image_m" id="image_m">
+                  <button type="submit" onclick="" value="submit">Modifier profil</button>
+                  <p><span id="problem_sup_annonce"></span></p>
+                </form>
+            </li>    
+          </ul>
+        </div>
       </div>
       <div class="clear"></div>
     </main>
   </div>
-<div class="wrapper row5">
-  <div id="copyright" class="hoc clear"> 
-    <p class="fl_left">Copyright &copy; 2016 - All Rights Reserved</p>
-    <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
-  </div>
-</div>
 
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 <!-- JAVASCRIPTS -->
