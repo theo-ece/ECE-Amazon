@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!--
+Template Name: Interlingua
+Author: <a href="http://www.os-templates.com/">OS Templates</a>
+Author URI: http://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: http://www.os-templates.com/template-terms
+-->
+<html lang="">
+<head>
+<title>Interlingua</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body id="top">
+
+<div class="wrapper row0" style="background-color: #232323">
+  <div id="topbar" class="hoc clear">
+    <div class="fl_left">
+      <ul>
+        <li><i class="fa fa-phone"></i> +33 4 78 29 77 54</li>
+        <li><i class="fa fa-envelope-o"></i> contact@ece.fr</li>
+      </ul>
+    </div>
+    <div class="fl_right">
+      <ul>
+        <li><a href="index.php"><i class="fa fa-lg fa-home"></i></a></li>
+        <li><a href="php/check.php">Votre compte</a></li>
+        <li><a href="php/deconnexion.php">Deconnexion</a></li>
+        <li><a href="panier.php">Panier</a></li>
+      </ul>
+    </div>
+  </div>
+</div>  
+
+<div class="wrapper row1" style="background-image:url(images/paris.jpeg);>
+  <header id="header" class="hoc clear"> 
+    <div id="logo" class="sectiontitle">
+      <h1><a href="index.php" style="font-size: x-large; color: #FFFFFF; font-weight: 800;"><br>ECE Amazon</a></h1>
+    </div>
+  </header>
+  <nav id="mainav" class="hoc clear"> <br></nav>
+</div>
+
+<div class="wrapper row2">
+  <main class="hoc container clear">
+    <div class="sectiontitle">
+      <h6>Quel  vêtement  voulez-vous   vendre?</h6>
+      <p>Rentrez les caractéristiques du vêtement que vous voulez vendre</p>
+    </div>
+    <div align="center">
+      <form action="vendrevetement.php"  method="post" enctype="multipart/form-data">
+        <input class="btmspace-10" type="text" name="Nom" placeholder="Nom">
+        <input class="btmspace-10" type="text" name="Marque" placeholder="Marque">
+        <input class="btmspace-10" type="text" name="Couleur" placeholder="Couleur">
+        <input class="btmspace-10" type="Number" name="Prix" placeholder="Prix">
+         <input class="btmspace-10" type="Number" name="Quantite" placeholder="Quantité">
+        <textarea class="btmspace-10"  name="Description" placeholder="Description"></textarea> 
+        <input class="btmspace-10" type="Number" name="Taille" placeholder="Taille">
+        <br>
+        <select name="Categorie" value="Catégorie">
+          <option value="Chaussures">Chaussures</option>
+          <option value="Haut">Haut</option>
+          <option value="Pantalon">Pantalon</option>
+        </select> <br>
+         <select name="Genre" value="Genre">
+          <option value="Feminin">Feminin</option>
+          <option value="Masculin">Masculin</option>
+        </select> <br>
+        <label for="image">Choisissez l'image de votre objet</label>
+        <input type="file" id="image" name="image"accept="image/png, image/jpeg"><br>
+        <input class="btmspace-10" type="text" name="Video" placeholder="Lien vidéo"><br>
+        <input type="submit" name="vendrevetement" value="vendre">
+       </form><br>
+
+       <form action="vendre.html" name="retour" method="post">
+          <input type="submit" name="Retour" value="Retour">
+       </form>
+      </div>
+  </main>
+</div>
+
+<div class="wrapper row5">
+  <div id="copyright" class="hoc clear">
+    <p class="fl_left">Copyright &copy; 2016 - All Rights Reserved - <a href="#">Domain Name</a></p>
+    <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+  </div>
+</div>
+
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="layout/scripts/jquery.min.js"></script>
+<script src="layout/scripts/jquery.backtotop.js"></script>
+<script src="layout/scripts/jquery.mobilemenu.js"></script>
+</body>
+</html>

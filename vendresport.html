@@ -7,6 +7,7 @@
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
 <body id="top">
+
 <div class="wrapper row0" style="background-color: #232323">
   <div id="topbar" class="hoc clear">
     <div class="fl_left">
@@ -19,12 +20,12 @@
       <ul>
         <li><a href="index.php"><i class="fa fa-lg fa-home"></i></a></li>
         <li><a href="php/check.php">Votre compte</a></li>
-        <li><a href="php/check.php">Connexion</a></li>
+        <li><a href="php/deconnexion.php">Deconnexion</a></li>
         <li><a href="panier.php">Panier</a></li>
       </ul>
     </div>
   </div>
-</div>
+</div>  
 
 <div class="wrapper row1" style="background-image:url(images/paris.jpeg);>
   <header id="header" class="hoc clear"> 
@@ -35,30 +36,43 @@
   <nav id="mainav" class="hoc clear"> <br></nav>
 </div>
 
-<div class="wrapper row3">
-  <main class="hoc container clear"> 
+<div class="wrapper row2">
+  <main class="hoc container clear">
     <div class="sectiontitle">
-      <h6 class="heading">Bonjour & Bienvenue !</h6>
-      <p>Connectez-vous pour plus de fonctionnalités</p>
+      <h6>Quel  objet  sportif  voulez-vous   vendre?</h6>
+      <p>Rentrez les caractéristiques de l'objet sportif que vous souhaitez vendre</p>
     </div>
-    <div class="group" align="center">
-          <div class="form">
-            <form method="post" class="login-form" action="php/connexion.php">
-              <input class="btmspace-15" type="text" value="" id="nom" name="nom" placeholder="pseudo">
-              <input class="btmspace-15" type="password" value="" id="mdp" name="mdp" placeholder="Mot de passe">
-              <button type="submit" onclick="Verification()" value="submit">Connexion</button>
-              <p><span id="problem"></span></p>
-              <p class="message">Première fois? <a href="register.html">Créer votre compte</a></p>
-              <br><br><br><br><br><br>
-            </form>
-          </div>
-    </div>
-    <div class="clear"></div>
+    <div align="center">
+      <form action="vendresport.php"  method="post" enctype="multipart/form-data">
+        <input class="btmspace-10" type="text" name="Nom" placeholder="Nom">
+        <input class="btmspace-10" type="Number" name="Prix" placeholder="Prix">
+        <input class="btmspace-10" type="text" name="Marque" placeholder="Marque">
+         <input class="btmspace-10" type="Number" name="Quantite" placeholder="Quantité">
+         <textarea class="btmspace-10"  name="Description" placeholder="Description"></textarea> 
+        <br>
+        <select name="Categorie" value="Catégorie">
+          <option value="Ballon">Ballon</option>
+          <option value="Raquette">Raquette</option>
+          <option value="Sport">Sport</option>
+          <option value="Velo">Vélo</option>
+        </select> <br>
+         
+  
+        <label for="image">Choisissez l'image de votre objet</label>
+        <input type="file" name="image" id="fileToUpload" ><br>
+        <input class="btmspace-10" type="text" name="Video" placeholder="Lien vidéo"><br>
+        <input type="submit" name="vendresport" value="vendre">
+       </form><br>
+      <form action="vendre.html" name="retour" method="post">
+          <input type="submit" name="Retour" value="Retour">
+       </form>
+      </div>
   </main>
 </div>
+
 <div class="wrapper row5">
-  <div id="copyright" class="hoc clear"> 
-    <p class="fl_left">Copyright &copy; 2016 - All Rights Reserved</p>
+  <div id="copyright" class="hoc clear">
+    <p class="fl_left">Copyright &copy; 2016 - All Rights Reserved - <a href="#">Domain Name</a></p>
     <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
   </div>
 </div>

@@ -1,11 +1,45 @@
+<?php
+session_start();
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+$photo_profil="";
+$desc_nom="";
+$desc_prenom="";
+$pseudo = $_SESSION['Pseudo'];
+$mail="";
+$adresse="";
+$ville="";
+$cp="";
+$pays="";
+$carte="";
+$num="";
+
+
+$database = "piscine";
+$db_handle = mysqli_connect('localhost','root','');
+$db_found = mysqli_select_db($db_handle, $database);
+if($db_found){
+  $sql = "SELECT * FROM utilisateur WHERE Pseudo LIKE '$pseudo' ;";
+  $result = mysqli_query($db_handle, $sql);
+  if(mysqli_num_rows($result))                    
+  {
+    $resultat = $db_handle->query($sql);
+    $row = $resultat->fetch_assoc();
+    $photo_profil = $row["Photo"];
+    $desc_nom=$row["Nom"];
+    $desc_prenom=$row["Prenom"];
+    $mail=$row["Mail"];
+    $adresse=$row["Adresse"];
+    $ville=$row["Ville"];
+    $cp=$row["CP"];
+    $pays=$row["Pays"];
+    $carte=$row["Typecarte"];
+    $num=$row["Numero"];
+  }
+}
+mysqli_close($db_handle);
+?>
 <!DOCTYPE html>
-<!--
-Template Name: Interlingua
-Author: <a href="http://www.os-templates.com/">OS Templates</a>
-Author URI: http://www.os-templates.com/
-Licence: Free to use under our free template licence terms
-Licence URI: http://www.os-templates.com/template-terms
--->
 <html lang="">
 <head>
 <title>Profil</title>
@@ -78,10 +112,48 @@ Licence URI: http://www.os-templates.com/template-terms
     </ul>
   </nav>
 </div>
-    
-      <div class="one_half">
-        <img class="inspace-10 borderedbox" src="images/demo/pp.png" alt="">
+
+<div class="wrapper row3">
+  <main class="hoc container clear"> 
+    <div class="sectiontitle">
+      <h6 class="heading"><?php echo "$desc_nom $desc_prenom"; ?></h6>
+      <p>Profil client</p>
+    </div>
+    <div class="group">
+      <div class="one_half first">
+        <img class="inspace-10 borderedbox" src="<?php echo $photo_profil?>" alt="">
       </div>
+        <div class="one_half">
+          <ul class="nospace group">
+            <h6 class="heading font-x1">Informations personnelles</h6>
+            <li class="one_half first">
+              <p>Nom : <?php echo "$desc_nom"; ?> Prénom : <?php echo "$desc_prenom"; ?> Pseudo : <?php echo "$pseudo"; ?></p>
+            </li> 
+            <li class="one_half first">
+              <p>Adresse : <?php echo "$adresse $cp $ville $pays"; ?></p>
+            </li>    
+          </ul>
+        </div>
+        <div>
+          <ul class="nospace group">
+            <li class="one_half " id="delete">
+                <h6 class="heading font-x1"><br><br>Modifier profil</h6>
+                <form method="post" class="login-form" action="php/modif_clients.php" enctype="multipart/form-data">
+                  <input class="btmspace-15" type="text" value='<?php echo "$desc_nom"; ?>' id="nom" name="nom" placeholder="Nom">
+                  <input class="btmspace-15" type="text" value='<?php echo "$desc_prenom"; ?>' id="prenom" name="prenom" placeholder="Prénom">
+                  <input class="btmspace-15" type="text" value='<?php echo "$mail"; ?>' id="mail" name="mail" placeholder="E-mail">
+                  <input class="btmspace-15" type="text" value='<?php echo "$adresse"; ?>' id="adresse" name="adresse" placeholder="Adresse">
+                  <input class="btmspace-15" type="number" value='<?php echo "$cp"; ?>' id="cp" name="cp" placeholder="Code Postal">
+                  <input class="btmspace-15" type="text" value='<?php echo "$ville"; ?>' id="ville" name="ville" placeholder="Ville">
+                  <input class="btmspace-15" type="text" value='<?php echo "$pays"; ?>' id="pays" name="pays" placeholder="Pays">
+                  <input class="btmspace-15" type="number" value='<?php echo "$num"; ?>' id="numero" name="numero" placeholder="Numéro">
+                  <label for="image_p">Modifier votre photo de profil</label><input type="file" name="image_p" id="image_p"><br><br>
+                  <button type="submit" onclick="" value="submit">Modifier profil</button>
+                  <p><span id="problem_sup_annonce"></span></p>
+                </form>
+            </li>    
+          </ul>
+        </div>
     </div>
     <div class="clear"></div>
   </main>

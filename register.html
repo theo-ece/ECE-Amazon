@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-<!--
-Template Name: Interlingua
-Author: <a href="http://www.os-templates.com/">OS Templates</a>
-Author URI: http://www.os-templates.com/
-Licence: Free to use under our free template licence terms
-Licence URI: http://www.os-templates.com/template-terms
--->
 <html lang="">
 <head>
 <title>Interlingua</title>
@@ -15,12 +8,8 @@ Licence URI: http://www.os-templates.com/template-terms
 <script type="text/javascript" src="log/logs.js"></script>
 </head>
 <body id="top">
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
 <div class="wrapper row0">
   <div id="topbar" class="hoc clear"> 
-    <!-- ################################################################################################ -->
     <div class="fl_left">
       <ul>
         <li><i class="fa fa-phone"></i> +33 4 78 29 77 54</li>
@@ -29,122 +18,53 @@ Licence URI: http://www.os-templates.com/template-terms
     </div>
     <div class="fl_right">
       <ul>
-        <li><a href="index.html"><i class="fa fa-lg fa-home"></i></a></li>
-        <li><a href="log_redirection.html">Votre compte</a></li>
-        <li><a href="connec_redirection.html">Connexion</a></li>
-        <li><a href="identification/panier/panier.html">Panier</a></li>
-      </ul>
+          <li><a href="index.php"><i class="fa fa-lg fa-home"></i></a></li>
+          <li><a href="php/check.php">Votre compte</a></li>
+          <li><a href="php/check.php">Connexion</a></li>
+          <li><a href="panier.php">Panier</a></li>
+        </ul>
     </div>
-    <!-- ################################################################################################ -->
   </div>
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div class="wrapper row1">
+
+<div class="wrapper row1" style="background-image:url(images/paris.jpeg);>
   <header id="header" class="hoc clear"> 
-    <!-- ################################################################################################ -->
-    <div id="logo" class="fl_left">
-      <h1><a href="index.html">ECE Amazone</a></h1>
-      <p>Premier site de vente mondial!</p>
+    <div id="logo" class="sectiontitle">
+      <h1><a href="index.php" style="font-size: x-large; color: #FFFFFF; font-weight: 800;"><br>ECE Amazon</a></h1>
     </div>
-    <div id="quickinfo" class="fl_right">
-      <ul class="nospace inline">
-        <li><strong>Praesent:</strong><br>
-          +00 (123) 456 7890</li>
-        <li><strong>Faucibus:</strong><br>
-          +00 (123) 456 7890</li>
-      </ul>
-    </div>
-    <!-- ################################################################################################ -->
   </header>
-  <nav id="mainav" class="hoc clear"> 
-    <!-- ################################################################################################ -->
-    <ul class="clear">
-      <li><a class="drop" href="#">Catégories</a>
-        <ul>
-          <li><a class="drop" href="categories/gallery.html">Livre</a>
-            <ul>
-              <li><a href="categories/full-width.html">Jeunesse</a></li>
-              <li><a href="catégories/sidebar-left.html">Aventure</a></li>
-              <li><a href="categories/sidebar-right.html">Policier</a></li>
-              <li><a href="categories/full-width.html">Science Fiction</a></li>
-              <li><a href="catégories/sidebar-left.html">Les grands classiques</a></li>
-            </ul>
-          </li>
-          <li><a class="drop" href="categories/full-width.html">Musique</a>
-            <ul>
-              <li><a href="musique/full-width.html">Jazz</a></li>
-              <li><a href="musique/sidebar-left.html">Classique</a></li>
-              <li><a href="musique/sidebar-right.html">Pop</a></li>
-              <li><a href="musique/full-width.html">Rock</a></li>
-              <li><a href="musique/sidebar-left.html">Reggae</a></li>
-            </ul>
-          </li>
-          <li><a class="drop" href="catégories/sidebar-left.html">Vêtements</a>
-            <ul>
-              <li><a href="vetements/full-width.html">Haut</a></li>
-              <li><a href="vetements/sidebar-left.html">Bas</a></li>
-              <li><a href="vetements/sidebar-right.html">Chaussures</a></li>
-            </ul>
-          </li>
-          <li><a class="drop" href="categories/sidebar-right.html">Sport & Loisir</a>
-            <ul>
-              <li><a href="s&l/full-width.html">Ballon</a></li>
-              <li><a href="s&l/sidebar-left.html">Raquette</a></li>
-              <li><a href="s&l/sidebar-right.html">Sport d'Hiver</a></li>
-              <li><a href="s&l/full-width.html">Vélo</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li><a href="#venteflash">Vente Flash</a></li>
-      <li><a href="#">Vendre</a></li>
-      <li><a href="#">Administration</a></li>
-    </ul>
-    <!-- ################################################################################################ -->
-  </nav>
+  <nav id="mainav" class="hoc clear"> <br></nav>
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
+
 <div class="wrapper row3">
   <main class="hoc container clear"> 
-    <!-- main body -->
-    <!-- ################################################################################################ -->
     <div class="sectiontitle">
       <h6 class="heading">Création du compte</h6>
       <p>Veuiller rentrer vos données personnelles comme indiqué dans les closes suivantes.</p>
     </div>
     <div class="group" align="center">
           <div class="form">
-            <form method="post" class="register-form" action="traitements/register.php">
+            <form method="post" class="register-form" action="php/register.php">
               <input type="text" name="nom" placeholder="nom"/><p></p>
+              <input type="text" name="prenom" placeholder="prénom"/><p></p>
               <input type="text" name="pseudo" placeholder="pseudo"/><p></p>
               <input type="text" name="email" placeholder="adresse@e-mail.com"/><p></p>
               <input type="password" name="mdp" placeholder="Mot de passe"/><p></p>
               <button>Créer votre compte</button>
-              <p class="message">Déjà enregistré? <a href="login.html">Connectez vous <3</a></p>
+              <p class="message">Déjà enregistré? <a href="login.html">Connectez vous</a></p>
+              <br><br><br><br>
             </form>
           </div>
   </div>
   <div class="clear"></div>
   </main>
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
 <div class="wrapper row5">
   <div id="copyright" class="hoc clear"> 
-    <!-- ################################################################################################ -->
     <p class="fl_left">Copyright &copy; 2016 - All Rights Reserved</p>
     <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
-    <!-- ################################################################################################ -->
   </div>
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 <!-- JAVASCRIPTS -->
 <script src="layout/scripts/jquery.min.js"></script>
